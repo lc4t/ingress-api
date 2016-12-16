@@ -1,3 +1,4 @@
+
 # 说明
 
 目标一共有两个，一个是[Intel官方地图](https://www.ingress.com/intel)，另一个是游戏使用的API
@@ -33,6 +34,25 @@
 ![getGameScore](https://ww3.sinaimg.cn/large/006tNbRwgw1farw9fbte8j31fc06sgnj.jpg)
 ![getGameScore](https://ww3.sinaimg.cn/large/006tNbRwgw1farw6qgzgwj30ac05wq37.jpg)
 
+
+## getRegionScoreDetails
+
+这个API用来得到当前那区域的比分
+
+	API URL: https://www.ingress.com/r/getRegionScoreDetails
+	API Request: latE6, lngE6, v,
+	API Response: result: {gameScore: [Res, Enl], regionName, regionVertices: [[Res, Enl], ...], scoreHistory: [[id, Enl, Res], ...], timeToEndOfBaseCycleMs, topAgents:[{nick, team}]}
+
+	具体latE6,lngE6看下面getEntities API
+
+
+
+**example**:
+![code](http://ww1.sinaimg.cn/large/006tNbRwgw1fasr0bg6ehj31kw0aiwhd.jpg)
+![getRegionScoreDetails](https://ww2.sinaimg.cn/large/006tNbRwgw1fasqwpmodij30jy1csaf2.jpg)
+![getRegionScoreDetails](https://ww4.sinaimg.cn/large/006tNbRwgw1fasqwqamvwj30k00pywgy.jpg)
+
+
 ## getEntities
 
 这个是用来获取Entity,也就是link, field, portal的
@@ -52,7 +72,7 @@ tileKeys是一个字符串，表示一个矩形，是一个可控参数的高级
 下面的代码是进行经纬tile互转的
 ![lat-lng](https://ww4.sinaimg.cn/large/006tNbRwgw1farzd3oygpj31kw0q7jx0.jpg)
 
-另外，返回值的Lng_x_,Lat_x_,是6位小数，time是确定到毫秒的Unix时间戳
+另外，返回值的Lng_x_, Lat_x_,是6位小数，time是确定到毫秒的Unix时间戳
 
 guid是每一个entity的标识，所有用户，物品，link，portal，...都具有唯一标识guid
 
@@ -127,14 +147,32 @@ ascendingTimestampOrder(Bool)表示是否按照时间asc输出
 发出消息
 
 	API URL:
-	API Request: latE6, lngE6, message, tab, v
+	API Request: latE6, lngE6, message, tab, v,
 	API Response: result
 
 这个API，看上边接收消息的就可以了，注意tab的值是all或faction
 
+## redeemReward
+
+使用passcode
+
+	API URL: https://www.ingress.com/r/redeemReward
+	API Request: passcode, v,
+	API Response:
+		1. error
+
+
+## sendInviteEmail
+
+邀请
+
+	API URL: https://www.ingress.com/r/sendInviteEmail
+	API Request: inviteeEmailAddress, v
+	API Response: result
+
 ## 第一部分结束
 
-	[代码在这里](https://github.com/lc4t/ingress-api)
+	代码
 
 # Game API
 

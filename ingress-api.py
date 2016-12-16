@@ -189,7 +189,36 @@ class IntelMap:
         _ = self.r.post('https://www.ingress.com/r/sendPlext', headers=self.headers, data=data, proxies=self.proxy)
         return json.loads(_.text)
 
+    def get_region_score_details(self, lat, lng):
+        data = self.data_base
+        data.update({
+            'latE6': lat,   # 30420109, 104938641
+            'lngE6': lng,
+        })
+        data = json.dumps(data)
+        _ = self.r.post('https://www.ingress.com/r/getRegionScoreDetails', headers=self.headers, data=data, proxies=self.proxy)
+        return json.loads(_.text)
+
+    def get_redeem_reward(self, passcode):
+        data = self.data_base
+        data.update({
+            'passcode': passcode,
+        })
+        data = json.dumps(data)
+        _ = self.r.post('https://www.ingress.com/r/redeemReward', headers=self.headers, data=data, proxies=self.proxy)
+        return json.loads(_.text)
+
+    def get_send_invite_email(self, email):
+        data = self.data_base
+        data.update({
+            'inviteeEmailAddress': email,
+        })
+        data = json.dumps(data)
+        _ = self.r.post('https://www.ingress.com/r/sendInviteEmail', headers=self.headers, data=data, proxies=self.proxy)
+        return json.loads(_.text)
+
+
 if __name__ == '__main__':
     cookie = input('give me cookie as key=value; ...:')
     _ = IntelMap(cookie, '', '')
-    print(json.dumps(_.get_portal_details('3e2bcc15c58d486fae24e2ade2bf7327.16'), indent=4, ensure_ascii=False))
+    print(json.dumps(_.get_region_score_details(30420109, 104938641), indent=4, ensure_ascii=False))

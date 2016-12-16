@@ -4,6 +4,13 @@
 目标一共有两个，一个是[Intel官方地图](https://www.ingress.com/intel)，另一个是游戏使用的API
 
 本文只做相关API赏析，请不要做违反[TOS](https://www.ingress.com/terms)的事情
+
+已经打包成库
+
+`pip3 install ingressAPI`
+
+`from ingressAPI import IntelMap`
+
 # Intel Map
 
 ## 获取API

@@ -217,8 +217,56 @@ class IntelMap:
         _ = self.r.post('https://www.ingress.com/r/sendInviteEmail', headers=self.headers, data=data, proxies=self.proxy)
         return json.loads(_.text)
 
+class GameAPI:
+    headers = {
+        'Content-Type': 'application/json;charset=UTF-8',
+        'Connection': 'keep-alive',
+        'Accept': '*/*',
+        'Content-Encoding': 'gzip',
+        'User-Agent': 'Nemesis (gzip)',
+        'Accept-Encoding': 'gzip',
+    }
+    proxy = {
+        'http': 'socks5://127.0.0.1:1080',
+        'https': 'socks5://127.0.0.1:1080',
+    }
+    r = requests.Session()
+
+    def __init__(self, language, token, auth, blob):
+        self.headers.update({
+            'Accept-Language': language,
+            'X-XsrfToken': token,
+            'Authorization': auth,
+        })
+
+    def set_blob(self, blob, timestamp):
+
+        self.data_base = {
+            'params': {
+                'clientBasket': {
+                    'clientBlob': blob,
+                },
+                'knobSyncTimestamp': int(timestamp),
+            }
+        }
+
+    def get_game_score(self):
+        url = 'https://m-dot-betaspike.appspot.com/rpc/playerUndecorated/getGameScore'
+        data = {
+                "params": []
+                }
+        data = json.dumps(data)
+        _ = self.r.post(url, proxies=self.proxy, headers=self.headers, data=data)
+        return json.loads(_.text)
+
+    def get_objects_in_cells(self, lng, lat):
+        data = self.data_base
+        data['params'].update({
+            "energyGlobGuids": [],
+            "playerLocation": '%s,%s' % (hex(lng)[2:], hex(lat)[2:]),
+            "dates": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        })
+        # todo here
 
 if __name__ == '__main__':
-    cookie = input('give me cookie as key=value; ...:')
-    _ = IntelMap(cookie, '', '')
-    print(json.dumps(_.get_region_score_details(30420109, 104938641), indent=4, ensure_ascii=False))
+    pass

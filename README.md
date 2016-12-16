@@ -1578,11 +1578,33 @@ cellsAsHex是cell分片的token，20个16位hex值组成的list
 	"result": "1481911112158",
 	"gameBasket": {
 		"gameEntities": [],
-		"inventory": [],
+		"inventory": [
+		["56b24e20197240d2a2330e7fb60fa6a1.5", 1473951636802, {
+						"inInventory": {
+							"playerId": *,
+							"acquisitionTimestampMs": *
+						},
+						"modResource": {
+							"displayName": "Heat Sink",
+							"stats": {
+								"REMOVAL_STICKINESS": "0",
+								"HACK_SPEED": "200000"
+							},
+							"rarity": "COMMON",
+							"resourceType": "HEATSINK"
+						},
+						"displayName": {
+							"displayName": "Heat Sink",
+							"displayDescription": "Mod that reduces cooldown time between Portal hacks."
+						}
+				}],...,
+		],
 		"deletedEntityGuids": []
 	}
 }
 ```
+inventory能看到更新的物品是什么，强制同步后，这个里面就是所有东西，非常大。。（毕竟每个物品一个list...）
+
 ### registerForApn
 
 	API URL: https://m-dot-betaspike.appspot.com/rpc/emptyBasket/registerForApn
@@ -1618,11 +1640,14 @@ cellsAsHex是cell分片的token，20个16位hex值组成的list
 	},
 	"gameBasket": {
 		"gameEntities": [],
-		"inventory": [],
+		"inventory": [
+		],
 		"deletedEntityGuids": []
 	}
 }
 ```
+
+
 
 这个API不错，能看到自己邀请的所有人和状态，甚至是ACCEPTED_ANOTHER_PLAYERS_INVITE
 
@@ -2286,3 +2311,5 @@ continueationToken为null表示第一次查看任务，之后值为这个API自�
 
 	用了两个晚上统计了下API。
 	本来打算也写一份Game API的库，但是因为不能生成客户端blob并没有意义，以后用到再说，Intel Map已经ok了。
+	在游戏过程中，batch会在移动的时候触发
+	获取地图更新是定时轮询:getInventory（毕竟还可以passcode获取物品，所有得一直get）,getPaginatedPlexts,getObjectsInCells

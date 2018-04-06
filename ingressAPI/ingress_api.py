@@ -51,8 +51,8 @@ class IntelMap:
         'v': '',
     }
     proxy = {
-        'http': 'socks5://127.0.0.1:1080',
-        'https': 'socks5://127.0.0.1:1080',
+        # 'http': 'socks5://127.0.0.1:1080',
+        # 'https': 'socks5://127.0.0.1:1080',
     }
     def __init__(self, cookie, username, password):
         self.username = username
@@ -269,4 +269,9 @@ class GameAPI:
         # todo here
 
 if __name__ == '__main__':
+    # c = ''
+    # username = 'lc4t'
+    # password = ''
+    # test = IntelMap(c, username, password)
+    # print(test.get_game_score())
     pass

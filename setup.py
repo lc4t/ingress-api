@@ -3,7 +3,7 @@ from distutils.core import setup
 setup(
     name = 'ingressAPI',
     packages = ['ingressAPI'],
-    version = '0.1',
+    version = '0.2',
     description = 'Game Ingress API',
     author = 'lc4t',
     author_email = 'lc4t0.0@gmail.com',

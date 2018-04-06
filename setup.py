@@ -3,7 +3,7 @@ from distutils.core import setup
 setup(
     name = 'ingressAPI',
     packages = ['ingressAPI'],
-    version = '0.2',
+    version = '0.21',
     description = 'Game Ingress API',
     author = 'lc4t',
     author_email = 'lc4t0.0@gmail.com',
@@ -11,5 +11,5 @@ setup(
     install_requires = ['requests[socks]', 'lxml', 'beautifulsoup4'],
     license = 'GPL3.0',
     url = 'https://github.com/lc4t/ingress-api',
-    download_url = 'https://github.com/lc4t/ingress-api/tarball/0.1',
+    download_url = 'https://github.com/lc4t/ingress-api/tarball/0.21',
 )
